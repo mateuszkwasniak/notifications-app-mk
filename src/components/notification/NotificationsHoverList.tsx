@@ -1,5 +1,12 @@
+import { Button } from "../ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "../ui/hover-card";
 import NotificationsListItem from "./NotificationsListItem";
 
+//to be removed!
 const notifications: (
   | IFeatureNotification
   | IRequestNotification
@@ -88,21 +95,20 @@ const notifications: (
   },
 ];
 
-export default function NotificationsList({
-  value,
+export default function NotificationsHoverList({
+  children,
 }: {
-  value: "unread" | "all";
+  children: React.ReactElement;
 }) {
-  const notificationsForDisplay =
-    value === "unread"
-      ? notifications.filter((notification) => !notification?.read)
-      : notifications;
-
   return (
-    <div className="w-full h-[700px] flex flex-col gap-4 overflow-y-scroll py-8 px-4">
-      {notificationsForDisplay?.map((notification) => (
-        <NotificationsListItem notification={notification} />
-      ))}
-    </div>
+    <HoverCard>
+      <HoverCardTrigger>{children}</HoverCardTrigger>
+      <HoverCardContent className="mt-5 pt-2 min-w-[450px] max-h-[85vh] overflow-y-auto flex flex-col gap-4 border-none shadow-none">
+        {notifications.slice(0, 8).map((notification) => (
+          <NotificationsListItem notification={notification} small />
+        ))}
+        <Button className="bg-sky-700">Check all notifications</Button>
+      </HoverCardContent>
+    </HoverCard>
   );
 }

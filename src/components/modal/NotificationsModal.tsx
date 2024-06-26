@@ -1,6 +1,6 @@
 import ButtonIcon from "../button/ButtonIconBell";
 import ButtonMarkAllAsRead from "../button/ButtonMarkAllAsRead";
-import NotificationsList from "../notification/NotificationsList";
+import NotificationsList from "../notification/NotificationsModalList";
 import { notificationModalTabs } from "../../lib/notifications";
 
 import {
@@ -11,14 +11,17 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import NotificationsHoverList from "../notification/NotificationsHoverList";
 
 export default function NotificationsModal() {
   return (
     <Dialog>
       <DialogTrigger>
-        <ButtonIcon />
+        <NotificationsHoverList>
+          <ButtonIcon />
+        </NotificationsHoverList>
       </DialogTrigger>
-      <DialogContent className="max-w-[700px] w-full max-h-[90vh] overflow-hidden">
+      <DialogContent className="max-w-[700px] w-full max-h-[95vh] overflow-y-auto pb-0">
         <DialogHeader>
           <DialogTitle className="flex items-center w-fit mb-4 text-2xl">
             Notifications
