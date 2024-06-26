@@ -3,9 +3,11 @@ import Navbar from "./Navbar";
 
 export default function Root() {
   return (
-    <div>
+    <>
       <Navbar />
-      <Outlet />
-    </div>
+      <main className="w-full flex items-center justify-center">
+        <Outlet />
+      </main>
+    </>
   );
 }
