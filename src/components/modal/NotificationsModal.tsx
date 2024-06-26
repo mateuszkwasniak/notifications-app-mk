@@ -1,4 +1,3 @@
-import ButtonIcon from "../button/ButtonIconBell";
 import ButtonMarkAllAsRead from "../button/ButtonMarkAllAsRead";
 import NotificationsList from "../notification/NotificationsModalList";
 import { notificationModalTabs } from "../../lib/notifications";
@@ -11,23 +10,28 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import NotificationsHoverList from "../notification/NotificationsHoverList";
+import { useNotificationsStore } from "../../store/notifications_store";
 
-export default function NotificationsModal() {
+export default function NotificationsModal({
+  children,
+}: {
+  children: React.ReactElement;
+}) {
+  const unreadNotificationsCount = useNotificationsStore(
+    (state) => state.unreadNotificationsCount
+  );
   return (
     <Dialog>
-      <DialogTrigger>
-        <NotificationsHoverList>
-          <ButtonIcon />
-        </NotificationsHoverList>
-      </DialogTrigger>
+      <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="max-w-[700px] w-full max-h-[95vh] overflow-y-auto pb-0">
         <DialogHeader>
           <DialogTitle className="flex items-center w-fit mb-4 text-2xl">
             Notifications
-            <div className="w-fit self-start ml-2 px-2 py-0.5 inline-flex items-center justify-center rounded-full bg-red-600 text-xs text-bold text-white">
-              3 NEW
-            </div>
+            {unreadNotificationsCount > 0 && (
+              <div className="w-fit self-start ml-2 px-2 py-0.5 inline-flex items-center justify-center rounded-full bg-red-600 text-xs text-bold text-white animate-pulse">
+                {unreadNotificationsCount} NEW
+              </div>
+            )}
           </DialogTitle>
         </DialogHeader>
         <Tabs defaultValue={notificationModalTabs[0].value} className="w-full">

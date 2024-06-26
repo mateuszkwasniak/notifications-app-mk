@@ -100,7 +100,7 @@ export default function NotificationsListItem({
           <div
             className="w-4 h-4 ml-auto rounded-full bg-sky-600 hover:scale-125 transition duration-300"
             onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-              e.preventDefault();
+              e.stopPropagation();
               markNotificationAsRead(notification.id);
             }}
           />

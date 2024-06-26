@@ -12,11 +12,11 @@ export default function Root() {
     (state) => state.notificationsCount
   );
 
-  // useEffect(() => {
-  //   if (notificationsCount === 0) {
-  //     fetchNotifications();
-  //   }
-  // }, [notificationsCount, fetchNotifications]);
+  useEffect(() => {
+    if (notificationsCount === 0) {
+      fetchNotifications();
+    }
+  }, [fetchNotifications, notificationsCount]);
 
   return (
     <>

@@ -19,8 +19,9 @@ type NotificationsStore = {
     | IStatusHoldNotification
     | undefined;
   notificationsCount: number;
+  unreadNotificationsCount: number;
   markNotificationAsRead: (id: number) => void;
-  markAllNotificationsAsUnread: () => void;
+  markAllNotificationsAsRead: () => void;
   fetchNotifications: () => Promise<void>;
   loading: boolean;
   errorMsg: string;
@@ -36,6 +37,7 @@ export const useNotificationsStore = create<NotificationsStore>()(
         );
       },
       notificationsCount: 0,
+      unreadNotificationsCount: 0,
       fetchNotifications: async () => {
         try {
           const response = await fetch(
@@ -60,6 +62,8 @@ export const useNotificationsStore = create<NotificationsStore>()(
               produce((state: NotificationsStore) => {
                 state.notifications = fetchedNotifications;
                 state.loading = false;
+                state.notificationsCount = fetchedNotifications.length;
+                state.unreadNotificationsCount = fetchedNotifications.length;
               })
             );
           }
@@ -78,19 +82,24 @@ export const useNotificationsStore = create<NotificationsStore>()(
             state.notifications.find(
               (notification) => notification.id === id
             )!.read = true;
+            state.unreadNotificationsCount--;
           })
         ),
-      markAllNotificationsAsUnread: () =>
+      markAllNotificationsAsRead: () =>
         set(
           produce((state: NotificationsStore) => {
             state.notifications.map(
-              (notification) => (notification.read = false)
+              (notification) => (notification.read = true)
             );
+            state.unreadNotificationsCount = 0;
           })
         ),
       loading: false,
       errorMsg: "",
     }),
-    { name: "notifications_app" }
+    {
+      name:
+        import.meta.env.VITE_LOCAL_STORAGE_STORE_NAME || "notifications_app",
+    }
   )
 );

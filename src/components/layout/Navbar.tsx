@@ -1,4 +1,6 @@
-import NotificationsModal from "../modal/NotificationsModal";
+import ButtonIconBell from "../button/ButtonIconBell";
+import NotificationsModal from "../modal/NotificationsModal.tsx";
+import NotificationsHoverList from "../notification/NotificationsHoverList";
 
 export default function Navbar() {
   return (
@@ -10,7 +12,11 @@ export default function Navbar() {
           </p>
         </div>
         <nav>
-          <NotificationsModal />
+          <NotificationsModal>
+            <NotificationsHoverList>
+              <ButtonIconBell />
+            </NotificationsHoverList>
+          </NotificationsModal>
         </nav>
       </div>
     </div>
