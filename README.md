@@ -36,4 +36,4 @@ Notifications App is a simple web application that will allow you to act upon fe
 
 7. Start the application:
 
-   npm run start
+   npm run preview
