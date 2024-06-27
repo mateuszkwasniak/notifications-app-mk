@@ -15,14 +15,17 @@ export default function NotificationsHoverList({
   const notifications = useNotificationsStore((state) => state.notifications);
 
   return (
-    <HoverCard openDelay={500} closeDelay={2000}>
+    <HoverCard openDelay={0} closeDelay={200}>
       <HoverCardTrigger>{children}</HoverCardTrigger>
       <HoverCardContent
         className={`mt-5 pt-2 min-w-[450px] max-h-[85vh] overflow-y-auto flex flex-col gap-4 border-none shadow-none`}
       >
-        {notifications.slice(0, 5).map((notification) => (
-          <NotificationsListItem notification={notification} small />
-        ))}
+        {notifications
+          .slice(0, 5)
+          .sort((notification) => (notification?.read ? 1 : -1))
+          .map((notification) => (
+            <NotificationsListItem notification={notification} small />
+          ))}
         <Button className="bg-sky-700">Check all notifications</Button>
       </HoverCardContent>
     </HoverCard>

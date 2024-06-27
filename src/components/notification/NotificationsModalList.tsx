@@ -97,8 +97,6 @@ export default function NotificationsModalList({
 }) {
   const notifications = useNotificationsStore((state) => state.notifications);
 
-  console.log(notifications);
-
   const notificationsForDisplay =
     value === "unread"
       ? notifications.filter((notification) => !notification?.read)

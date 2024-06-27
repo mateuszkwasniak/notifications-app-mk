@@ -10,11 +10,11 @@ export default function ButtonIconBell() {
     <Button
       variant="outline"
       size="icon"
-      className="relative rounded-full border-none hover:bg-sky-50"
+      className="relative rounded-full border-none bg-transparent hover:bg-sky-50"
     >
       <BellRing className="h-5 w-5 text-slate-800" />
       {unreadNotificationsCount > 0 && (
-        <div className="absolute -right-1 -top-1 w-[18px] h-[18px] p-1 flex items-center justify-center bg-red-600 z-10 rounded-full animate-bounce">
+        <div className="absolute -right-1 -top-1 w-[18px] h-[18px] p-1 flex items-center justify-center bg-red-600 rounded-full animate-bounce">
           <p className="text-[10px] font-bold text-white ">
             {unreadNotificationsCount}
           </p>

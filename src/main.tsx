@@ -3,8 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/layout/Root";
-import HomePage from "./pages/home";
+
 import ErrorPage from "./pages/error";
+import HomePage from "./pages/home";
+import NotificationPage from "./pages/notification";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +19,8 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/test",
-        element: <div>Test</div>,
+        path: "/notifications/:id",
+        element: <NotificationPage />,
       },
     ],
   },

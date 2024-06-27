@@ -11,17 +11,28 @@ import {
 } from "../ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { useNotificationsStore } from "../../store/notifications_store";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 export default function NotificationsModal({
   children,
 }: {
   children: React.ReactElement;
 }) {
+  const [open, setOpen] = useState<boolean>(false);
+
   const unreadNotificationsCount = useNotificationsStore(
     (state) => state.unreadNotificationsCount
   );
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="max-w-[700px] w-full max-h-[95vh] overflow-y-auto pb-0">
         <DialogHeader>

@@ -33,7 +33,7 @@ export const useNotificationsStore = create<NotificationsStore>()(
       notifications: [],
       getSingleNotification: (id: number) => {
         return get().notifications.find(
-          (notification) => notification.id === id
+          (notification) => Number(notification.id) === id
         );
       },
       notificationsCount: 0,
@@ -46,7 +46,6 @@ export const useNotificationsStore = create<NotificationsStore>()(
           );
 
           if (!response.ok) {
-            console.log(response);
             produce((state: NotificationsStore) => {
               state.errorMsg = DEFAULT_ERROR_MSG;
               state.loading = false;

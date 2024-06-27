@@ -2,6 +2,7 @@ import { CirclePause, Leaf, MessageSquareText } from "lucide-react";
 import { Card, CardContent, CardFooter } from "../ui/card";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { useNotificationsStore } from "../../store/notifications_store";
+import { useNavigate } from "react-router-dom";
 
 export default function NotificationsListItem({
   notification,
@@ -16,6 +17,7 @@ export default function NotificationsListItem({
   const markNotificationAsRead = useNotificationsStore(
     (state) => state.markNotificationAsRead
   );
+  const navigate = useNavigate();
 
   const notifDate = parseISO(notification.created_at);
 
@@ -71,11 +73,15 @@ export default function NotificationsListItem({
   }
   return (
     <Card
-      className={`w-full ${
+      onClick={(e) => {
+        e.stopPropagation();
+        navigate(`/notifications/${notification.id}`);
+      }}
+      className={`w-full cursor-pointer ${
         !small && "hover:opacity-70"
       } transition duration-300 ${
         notification?.read ? "bg-transparent" : "bg-sky-50"
-      } ${small || notification?.read ? "" : "cursor-pointer"}`}
+      }`}
     >
       <CardContent className="flex gap-6 p-4">
         <div
