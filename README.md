@@ -18,7 +18,7 @@ Notifications App is a simple web application that will allow you to act upon fe
 
    git clone https://github.com/mateuszkwasniak/notifications-app-mk.git
 
-2. Open terminal and navigate to the project's folder.
+2. Navigate to the project's folder.
 
 3. Run JSON Server (required for the initial load of notifications data from the json file):
 
