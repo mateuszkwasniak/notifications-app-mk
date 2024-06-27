@@ -42,9 +42,9 @@ export default function NotificationPage() {
   }, [id, getSingleNotification]);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2 className="mt-8">Loading...</h2>;
   } else if (!loading && !notification) {
-    return <h2>Ooops seems there's no such Notification!</h2>;
+    return <h2 className="mt-8">Ooops seems there's no such Notification!</h2>;
   } else if (notification) {
     return (
       <main className="mx-4">

@@ -75,6 +75,7 @@ export default function NotificationsListItem({
     <Card
       onClick={(e) => {
         e.stopPropagation();
+        if (!notification.read) markNotificationAsRead(notification.id);
         navigate(`/notifications/${notification.id}`);
       }}
       className={`w-full cursor-pointer ${

@@ -1,18 +1,8 @@
-import { useRouteError } from "react-router-dom";
-
 export default function ErrorPage() {
-  const error = useRouteError() as { statusText?: string; message?: string };
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>
-          {error?.statusText ||
-            error?.message ||
-            "Something went horribly wrong!"}
-        </i>
-      </p>
-    </div>
+    <main className="w-full flex flex-col items-center gap-4">
+      <h1 className="mt-8">Oops!</h1>
+      <p>Seems you have reached a page that does not exist!</p>
+    </main>
   );
 }
